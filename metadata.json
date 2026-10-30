@@ -1,0 +1,6 @@
+{
+  "name": "FoodBridge",
+  "description": "Complete Food Donation & Rescue Platform connecting surplus food donors with community organizations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
