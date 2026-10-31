@@ -18,6 +18,7 @@ import { useAuth } from '../../context/AuthContext';
 import { store } from '../../services/store';
 import { CountdownBadge } from '../../components/CountdownBadge';
 import { StatusBadge } from '../../components/StatusBadge';
+import { SafeImage } from '../../components/SafeImage';
 import { ReportReason } from '../../types';
 
 export const RecipientListingDetail: React.FC = () => {
@@ -145,11 +146,11 @@ export const RecipientListingDetail: React.FC = () => {
           <div className="lg:col-span-7 space-y-6">
             <div className="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-xs">
               <div className="h-64 relative bg-stone-100">
-                <img
+                <SafeImage
                   src={listing.imageUrl}
                   alt={listing.title}
+                  fallbackCategory={listing.category.replace('_', ' ')}
                   className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-4 left-4 flex items-center gap-2">
                   <span className="text-xs font-bold text-stone-900 bg-white/95 px-2.5 py-1 rounded shadow-xs">

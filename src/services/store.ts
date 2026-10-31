@@ -49,6 +49,18 @@ function save<T>(key: string, value: T): void {
   }
 }
 
+function sanitizeImageUrl(url?: string): string {
+  if (!url) return '/images/listing_biryani.jpg';
+  if (url.includes('hero_food_rescue')) return '/images/hero_food_rescue.jpg';
+  if (url.includes('biryani')) return '/images/listing_biryani.jpg';
+  if (url.includes('bread') || url.includes('bakery')) return '/images/listing_bakery_bread.jpg';
+  if (url.includes('groceries') || url.includes('produce') || url.includes('fruit')) return '/images/listing_groceries.jpg';
+  if (url.startsWith('/src/assets/images/')) {
+    return url.replace('/src/assets/images/', '/images/');
+  }
+  return url;
+}
+
 class Store {
   private profiles: Profile[];
   private organizations: Organization[];
@@ -62,8 +74,14 @@ class Store {
   constructor() {
     this.profiles = load('profiles', INITIAL_PROFILES);
     this.organizations = load('organizations', INITIAL_ORGANIZATIONS);
-    this.listings = load('listings', INITIAL_FOOD_LISTINGS);
-    this.requests = load('requests', INITIAL_REQUESTS);
+    this.listings = load('listings', INITIAL_FOOD_LISTINGS).map((l) => ({
+      ...l,
+      imageUrl: sanitizeImageUrl(l.imageUrl),
+    }));
+    this.requests = load('requests', INITIAL_REQUESTS).map((r) => ({
+      ...r,
+      listingImageUrl: sanitizeImageUrl(r.listingImageUrl),
+    }));
     this.events = load('events', INITIAL_EVENTS);
     this.reports = load('reports', INITIAL_REPORTS);
     this.verificationRequests = load('verifications', INITIAL_VERIFICATION_REQUESTS);

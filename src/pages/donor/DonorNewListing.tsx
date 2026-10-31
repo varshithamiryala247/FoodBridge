@@ -14,6 +14,7 @@ import { DashboardLayout } from '../../components/DashboardLayout';
 import { useAuth } from '../../context/AuthContext';
 import { store } from '../../services/store';
 import { FoodCategory, DietaryType, QuantityUnit } from '../../types';
+import { SafeImage } from '../../components/SafeImage';
 
 export const DonorNewListing: React.FC = () => {
   const { organization, user } = useAuth();
@@ -47,7 +48,7 @@ export const DonorNewListing: React.FC = () => {
   const [pickupArea, setPickupArea] = useState(organization?.serviceArea || 'Jubilee Hills');
   const [pickupStart, setPickupStart] = useState(startDefault);
   const [pickupDeadline, setPickupDeadline] = useState(deadlineDefault);
-  const [imageUrl, setImageUrl] = useState('/src/assets/images/listing_biryani_1793336883211.jpg');
+  const [imageUrl, setImageUrl] = useState('/images/listing_biryani.jpg');
   const [additionalInstructions, setAdditionalInstructions] = useState('Dispatch via rear service door near staff entrance.');
   const [safetyUndertaking, setSafetyUndertaking] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -400,15 +401,15 @@ export const DonorNewListing: React.FC = () => {
                 <div className="grid grid-cols-3 gap-3">
                   <button
                     type="button"
-                    onClick={() => setImageUrl('/src/assets/images/listing_biryani_1793336883211.jpg')}
+                    onClick={() => setImageUrl('/images/listing_biryani.jpg')}
                     className={`p-2 rounded-lg border text-left flex items-center gap-2.5 transition-colors ${
                       imageUrl.includes('biryani')
                         ? 'border-emerald-800 ring-2 ring-emerald-800 bg-emerald-50/30'
                         : 'border-stone-200 hover:bg-stone-50'
                     }`}
                   >
-                    <img
-                      src="/src/assets/images/listing_biryani_1793336883211.jpg"
+                    <SafeImage
+                      src="/images/listing_biryani.jpg"
                       alt="Cooked Meals"
                       className="w-10 h-10 rounded object-cover"
                     />
@@ -417,15 +418,15 @@ export const DonorNewListing: React.FC = () => {
 
                   <button
                     type="button"
-                    onClick={() => setImageUrl('/src/assets/images/listing_bakery_bread_1793336884616.jpg')}
+                    onClick={() => setImageUrl('/images/listing_bakery_bread.jpg')}
                     className={`p-2 rounded-lg border text-left flex items-center gap-2.5 transition-colors ${
-                      imageUrl.includes('bakery')
+                      imageUrl.includes('bakery') || imageUrl.includes('bread')
                         ? 'border-emerald-800 ring-2 ring-emerald-800 bg-emerald-50/30'
                         : 'border-stone-200 hover:bg-stone-50'
                     }`}
                   >
-                    <img
-                      src="/src/assets/images/listing_bakery_bread_1793336884616.jpg"
+                    <SafeImage
+                      src="/images/listing_bakery_bread.jpg"
                       alt="Bakery & Bread"
                       className="w-10 h-10 rounded object-cover"
                     />
@@ -434,15 +435,15 @@ export const DonorNewListing: React.FC = () => {
 
                   <button
                     type="button"
-                    onClick={() => setImageUrl('/src/assets/images/listing_groceries_1793336884994.jpg')}
+                    onClick={() => setImageUrl('/images/listing_groceries.jpg')}
                     className={`p-2 rounded-lg border text-left flex items-center gap-2.5 transition-colors ${
                       imageUrl.includes('groceries')
                         ? 'border-emerald-800 ring-2 ring-emerald-800 bg-emerald-50/30'
                         : 'border-stone-200 hover:bg-stone-50'
                     }`}
                   >
-                    <img
-                      src="/src/assets/images/listing_groceries_1793336884994.jpg"
+                    <SafeImage
+                      src="/images/listing_groceries.jpg"
                       alt="Groceries"
                       className="w-10 h-10 rounded object-cover"
                     />

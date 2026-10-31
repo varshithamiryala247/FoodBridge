@@ -19,6 +19,7 @@ import {
 import { PublicHeader, PublicFooter } from '../../components/PublicLayout';
 import { store } from '../../services/store';
 import { CountdownBadge } from '../../components/CountdownBadge';
+import { SafeImage } from '../../components/SafeImage';
 import { useAuth } from '../../context/AuthContext';
 
 export const LandingPage: React.FC = () => {
@@ -140,11 +141,10 @@ export const LandingPage: React.FC = () => {
               {/* Right Column: Hero Visual */}
               <div className="lg:col-span-5">
                 <div className="relative rounded-2xl overflow-hidden border border-stone-200 shadow-md bg-stone-100">
-                  <img
-                    src="/src/assets/images/hero_food_rescue_1793336883624.jpg"
+                  <SafeImage
+                    src="/images/hero_food_rescue.jpg"
                     alt="Community volunteers packing warm surplus meals into food containers"
                     className="w-full h-[400px] object-cover"
-                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
                     <div className="flex items-center gap-2 text-xs text-amber-300 font-semibold mb-1">
@@ -243,11 +243,11 @@ export const LandingPage: React.FC = () => {
                   className="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col"
                 >
                   <div className="h-44 relative bg-stone-100 overflow-hidden">
-                    <img
+                    <SafeImage
                       src={listing.imageUrl}
                       alt={listing.title}
+                      fallbackCategory={listing.category.replace('_', ' ')}
                       className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
                     />
                     <div className="absolute top-3 left-3">
                       <span className="text-[11px] font-semibold text-stone-900 bg-white/95 px-2.5 py-1 rounded shadow-xs">

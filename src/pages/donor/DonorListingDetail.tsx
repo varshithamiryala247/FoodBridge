@@ -18,6 +18,7 @@ import { useAuth } from '../../context/AuthContext';
 import { store } from '../../services/store';
 import { CountdownBadge } from '../../components/CountdownBadge';
 import { StatusBadge } from '../../components/StatusBadge';
+import { SafeImage } from '../../components/SafeImage';
 
 export const DonorListingDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -99,11 +100,11 @@ export const DonorListingDetail: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
             {/* Image Col */}
             <div className="md:col-span-5 h-64 md:h-auto relative bg-stone-100">
-              <img
+              <SafeImage
                 src={listing.imageUrl}
                 alt={listing.title}
+                fallbackCategory={listing.category.replace('_', ' ')}
                 className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
               />
               <div className="absolute top-4 left-4">
                 <StatusBadge status={listing.status} />

@@ -16,6 +16,7 @@ import { DashboardLayout } from '../../components/DashboardLayout';
 import { useAuth } from '../../context/AuthContext';
 import { store } from '../../services/store';
 import { CountdownBadge } from '../../components/CountdownBadge';
+import { SafeImage } from '../../components/SafeImage';
 import { FoodCategory, DietaryType } from '../../types';
 
 export const RecipientAvailableMarketplace: React.FC = () => {
@@ -205,11 +206,11 @@ export const RecipientAvailableMarketplace: React.FC = () => {
               >
                 {/* Photo & Badges */}
                 <div className="h-44 relative bg-stone-100 overflow-hidden">
-                  <img
+                  <SafeImage
                     src={listing.imageUrl}
                     alt={listing.title}
+                    fallbackCategory={listing.category.replace('_', ' ')}
                     className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute top-3 left-3 flex items-center gap-2">
                     <span className="text-[11px] font-bold text-stone-900 bg-white/95 px-2.5 py-0.5 rounded shadow-xs">
